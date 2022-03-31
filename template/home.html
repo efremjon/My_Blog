@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class="container">
+<div class="border p-3 shadow">
+    <h1 class="text-center">Post</h1>
+    <hr>
+
+    {% for post in object_list %}
+    <div class="border p-4 mb-4">
+     <h5 class="small">
+        Title:-<a href="{% url 'detile' post.id %}" class="btn">{{post.title}}</a>
+        By:-{{post.author.first_name}}
+        {{post.author.last_name}}
+        -{{post.post_date}}
+     </h5> 
+    <h5 class="small">
+        Catagory:-<a href="{% url 'catagory' post.catagory2.id|slugify %}" class="btn btn-sm" >{{post.catagory2}}</a>
+    </h5>
+    <h5 class="small">  
+       
+    </h5>   
+        <br>
+ 
+        {{post.body|slice:":100"|safe}}
+        <br>
+        <br>
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <div class="col-md-4">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'update' post.id %}" role="button">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'delete' post.id %}" role="button">Delete</a>
+                </div>
+           {% endif %}
+     {% endif %}
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+
+
+
+{% endblock %}

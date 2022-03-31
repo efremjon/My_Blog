@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+
+<div class="container">
+        <div class="border p-3 shadow">
+   <p><h4>{{post.title}}</h4><small>By: {{post.author.first_name}} {{post.author.last_name}}
+            - {{post.post_date}}</small> 
+            {% if user.is_authenticated %}
+                  {% if user.id == post.author.id %}
+                        <a class="btn  btn-sm" href="{% url 'update' post.id %}">(Edit)</a> |
+                        <a class="btn btn-sm" href="{% url 'delete' post.id %}">(Delete)</a>
+                  {% endif %}
+           {% endif %}
+        </p> 
+<hr>
+        {{post.body|safe}}
+<br>
+
+<hr>
+
+         <form action="{% url 'post' post.id %}" method="POST">
+                 {% csrf_token %}
+                 <a class="btn btn-secondary btn-sm" href="/" role="button">Back</a>
+                 <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary btn-sm">Like</button>
+         </form>
+</div>
+</div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Todo App{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="border p-3 shadow">
+        <h4 class="text-center">Add-Post</h4>
+        <hr>
+          <form method="POST">
+              {% csrf_token %}
+              <div class="d-grid gap-2">
+              {{ form|crispy }}
+              
+              <button class="btn btn-secondary">Save</button>
+             </div>
+           </form>
+      </div>
+</div>
+{% else %}
+
+<div class="alert alert-danger" role="alert">
+  This page not allowed for you!!! <a href="/" class="alert-link">Go back Home</a>.
+</div>
+{% endif %}
+
+{% endblock %}
+
+
+

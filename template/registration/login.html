@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Todo App{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+<div class="container">
+<div class="border p-5 shadow">
+  <h4 class="text-center">Login</h4>
+  <hr>
+  <br>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="d-grid gap-2">
+        {{ form|crispy }}
+        
+        <button class="btn btn-secondary">Login</button>
+       </div>
+     </form>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
