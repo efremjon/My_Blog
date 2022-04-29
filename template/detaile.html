@@ -15,15 +15,28 @@
            {% endif %}
         </p> 
 <hr>
+{% if post.hader_image  %}
+<img src="{{post.hader_image.url}}">
+<br>
+<br>
+{% endif %}
         {{post.body|safe}}
 <br>
 
 <hr>
-
-         <form action="{% url 'post' post.id %}" method="POST">
+       
+         <form action="{% url 'like_post' post.id %}" method="POST">
                  {% csrf_token %}
-                 <a class="btn btn-secondary btn-sm" href="/" role="button">Back</a>
-                 <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary btn-sm">Like</button>
+                 {% if user.is_authenticated %}
+                 {% if liked %}
+                 <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-danger btn-sm">UnLike</button> 
+                {% else %}
+                 <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary btn-sm">Like</button> 
+                 {% endif %}
+                 {% else %}
+                 <a href="{% url 'login' %}" class="btn btn-sm">Login to like</a> 
+                 {% endif %}
+                 - <span>{{total_likes}}</span> Like
          </form>
 </div>
 </div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Edit-Profile{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+<div class="container">
+<div class="border p-5 shadow">
+  <h4 class="text-center">Edit Profile</h4>
+  <hr>
+  <br>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="d-grid gap-2">
+        {{ form|crispy }}
+         <input class="btn btn-secondary" type="submit" value="Update Profile">
+      
+       </div>
+     </form>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+

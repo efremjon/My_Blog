@@ -8,11 +8,11 @@
 <div class="border p-3 shadow">
   <h4 class="text-center">Add-Post</h4>
   <hr>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="d-grid gap-2">
-        {{ form|crispy }}
-        {{ form.media }}
+          {{ form.media }}
+          {{ form|crispy }}
         <br>
         <button class="btn btn-secondary">Add_Post</button>
        </div>
