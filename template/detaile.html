@@ -38,7 +38,46 @@
                  {% endif %}
                  - <span>{{total_likes}}</span> Like
          </form>
+
+         <hr>
+         <br>
+         <br>
+         <div class="card mb-3" >
+                <div class="row g-0">
+                        {% if post.author.profile.profile_pic %}
+                  <div class="col-md-2">
+                    <img src="{{post.author.profile.profile_pic.url}}" class="rounded-circle img-fluid rounded-start">
+                  </div>
+                      {% endif %}
+                  <div class="col-md-10">
+                    <div class="card-body">
+                      <h5 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h5>
+                      <p class="card-text">
+                          <small class="text-muted">
+                        
+                              
+                                {% if post.author.profile.telegram %}
+                              <a href="{{post.author.profile.telegram}}" > Facebook | </a>
+                                {% endif %}
+
+                                {% if post.author.profile.facebook %}
+                              <a href="{{post.author.profile.facebook}}" > Telegram | </a>
+                              {% endif %}
+
+                              {% if post.author.profile.instagram %}
+                              <a href="{{post.author.profile.instagram}}" > Instagram </a>
+                              {% endif %}
+
+                          </small></p>
+                      <p class="card-text">{{post.author.profile.body}} </p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              telegram
 </div>
+
 </div>
 
 
