@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="container">
+<div class="border p-3 shadow">
+    <h1 class="text-center">Profile</h1>
+    <hr>
+
+
+
+
+
+   <div class="card mb-3 shadow" >
+    <div class="row g-0">
+      <div class="col-md-2">
+        {% if user_profile.profile_pic %}
+        <img src="{{user_profile.profile_pic.url}}" class="rounded-circle img-fluid rounded-start">
+        {% else %}
+        <img src="{% static 'theblog/images/default.png' %}" class="rounded-circle rounded-start img-fluid ">
+        {% endif %}
+      </div>
+      <div class="col-md-1">
+       
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">{{user_profile.user.first_name}}-{{user_profile.user.last_name}}</h5>
+          <p class="card-text">
+              <small class="text-muted">
+                
+              
+                    {% if user_profile.telegram %}
+                  <a href="{{user_profile.telegram}}" > Facebook  </a>
+                    {% endif %}
+
+                    {% if user_profile.facebook %}
+                  <a href="{{user_profile.facebook}}" >| Telegram  </a>
+                  {% endif %}
+
+                  {% if user_profile.instagram %}
+                  <a href="{{user_profile.instagram}}" >| Instagram </a>
+                  {% endif %}
+
+              </small></p>
+          <p class="card-text">{{user_profile.body}} </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+{% endblock %}

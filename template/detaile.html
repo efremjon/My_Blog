@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <br>
 
@@ -44,18 +44,24 @@
          <br>
          <div class="card mb-3" >
                 <div class="row g-0">
-                        {% if post.author.profile.profile_pic %}
+                       
                   <div class="col-md-2">
+                    {% if post.author.profile.profile_pic %}
                     <img src="{{post.author.profile.profile_pic.url}}" class="rounded-circle img-fluid rounded-start">
+                    {% else %}
+                    <img src="{% static 'theblog/images/default.png' %}" class="rounded-circle img-fluid rounded-start">
+                    {% endif %}
                   </div>
-                      {% endif %}
-                  <div class="col-md-10">
+                  <div class="col-md-1">
+                   
+                  </div>
+                  <div class="col-md-9">
                     <div class="card-body">
                       <h5 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h5>
                       <p class="card-text">
                           <small class="text-muted">
-                        
-                              
+                            
+                            <a href="{% url 'user_profile' post.author.profile.id %}" > My Profile | </a>
                                 {% if post.author.profile.telegram %}
                               <a href="{{post.author.profile.telegram}}" > Facebook | </a>
                                 {% endif %}
@@ -75,7 +81,7 @@
                   </div>
                 </div>
               </div>
-              telegram
+          
 </div>
 
 </div>
